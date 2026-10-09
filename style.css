@@ -309,9 +309,76 @@ footer a:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation: none !important;
     scroll-behavior: auto !important;
     transition: none !important;
   }
+}
+
+/* Obsession section */
+.obsession {
+  position: relative;
+}
+
+#obsession-current {
+  margin-top: 2.5rem;
+}
+
+.obsession-entry {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.obsession-entry.is-current {
+  border-color: var(--pink);
+  box-shadow: 6px 6px 0 var(--pink);
+}
+
+.obsession-date {
+  margin-bottom: 1.25rem;
+  color: var(--green);
+  font-family: monospace;
+  letter-spacing: 0.15em;
+}
+
+.obsession-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+/* Green obsession cards */
+.obsession-item {
+  border: 1px solid #39ff88;
+  color: #39ff88;
+  padding: 1rem;
+  background: rgba(57, 255, 136, 0.06);
+}
+
+.obsession-item h3 {
+  margin: 0 0 0.5rem;
+  color: #39ff88;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+}
+
+.obsession-item p {
+  margin: 0;
+  color: #b8ffcf;
+}
+
+#archive-btn {
+  margin-top: 2rem;
+}
+
+#obsession-archive {
+  margin-top: 2rem;
+}
+
+#obsession-archive[hidden] {
+  display: none;
 }
