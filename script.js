@@ -36,3 +36,95 @@ signalButton.addEventListener("click", () => {
   lastIndex = index;
   signalOutput.textContent = messages[index];
 });
+
+const obsessions = [
+  {
+    DATE: "2026 OCT",
+    FILM: "Tokyo international film festival",
+    MUSIC: "Unholy by Sam Smith and Kim Petras <br> Moon and Back by JVKE",
+    READING: "Unfortunately there's none.",
+    THOUGHT: "(WITH ANNUAL AUTUMN DLC) <br>Learning how to speak to machines. <br>Spending an unreasonably large amount of time on puzzles and perler beads. <br>Contemplating moving somewhere new."
+  },
+
+  {
+    DATE: "",
+    FILM: "",
+    MUSIC: "",
+    READING: "",
+    THOUGHT: ""
+  },
+
+  {
+    DATE: "",
+    FILM: "",
+    MUSIC: "",
+    READING: "",
+    THOUGHT: ""
+  }
+];
+
+const sortedObsessions = [...obsessions].sort(
+  (a, b) => new Date(b.date) - new Date(a.date)
+);
+
+const currentContainer = document.querySelector("#obsession-current");
+const archiveContainer = document.querySelector("#obsession-archive");
+const archiveButton = document.querySelector("#archive-btn");
+
+function createObsessionEntry(entry, isCurrent = false) {
+  return `
+    <article class="obsession-entry ${isCurrent ? "is-current" : ""}">
+      <p class="obsession-date">
+        ${isCurrent ? "CURRENTLY // " : ""}${entry.DATE}
+      </p>
+
+      <div class="obsession-grid">
+        <div class="obsession-item">
+          <h3>NEXT DESTINATION</h3>
+          <p>${entry.FILM}</p>
+        </div>
+
+        <div class="obsession-item">
+          <h3>RECENTLY READ</h3>
+          <p>${entry.READING}</p>
+        </div>
+
+        <div class="obsession-item">
+          <h3>ON REPEAT</h3>
+          <p>${entry.MUSIC}</p>
+        </div>
+
+        <div class="obsession-item">
+          <h3>THINGS CURRENTLY HAPPENING</h3>
+          <p>${entry.THOUGHT}</p>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+const currentObsession = sortedObsessions[0];
+const pastObsessions = sortedObsessions.slice(1);
+
+currentContainer.innerHTML = createObsessionEntry(
+  currentObsession,
+  true
+);
+
+archiveContainer.innerHTML = pastObsessions
+  .map(entry => createObsessionEntry(entry))
+  .join("");
+
+archiveButton.addEventListener("click", () => {
+  const archiveIsHidden = archiveContainer.hidden;
+
+  archiveContainer.hidden = !archiveIsHidden;
+  archiveButton.setAttribute(
+    "aria-expanded",
+    String(archiveIsHidden)
+  );
+
+  archiveButton.textContent = archiveIsHidden
+    ? "MAYBE ENOUGH FOR TODAY ↑"
+    : "PERHAPS A LITTLE MORE ↓";
+});
