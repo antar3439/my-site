@@ -334,8 +334,8 @@ footer a:hover {
 }
 
 .obsession-entry.is-current {
-  border-color: var(--pink);
-  box-shadow: 6px 6px 0 var(--pink);
+  border-color: var(--green);
+  box-shadow: 6px 6px 0 var(--green);
 }
 
 .obsession-date {
@@ -381,4 +381,32 @@ footer a:hover {
 
 #obsession-archive[hidden] {
   display: none;
+}
+
+.memory-board {
+  width: 100%;
+
+  border: 1px solid #00ff99;
+
+  margin-top: 2rem;
+}
+
+.memory-caption {
+  text-align: center;
+
+  color: #ff85e4;
+
+  margin-top: 1rem;
+}
+
+.memory-board img {
+    width: 100%;
+    max-width: 900px;
+
+    display: block;
+
+    margin: 2rem auto;
+
+    border
+: 1px solid #00ff99;
 }
